@@ -8,26 +8,67 @@
     margin-bottom: 20px;
 }
 
+.scanned-page-title{
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
 .scanner-screen-component{
     padding: 10px;
+    max-width: 700px;
 }
 
 
 .button-div{
     margin-top: 50px;
     display: flex;
-    column-gap: 20px;
+    flex-direction: column;
+    row-gap: 10px;
 }
 
 
 .scanner-com-buttons{
     width: 120px;
     height: 40px;
-    background-color: blue;
+    color: #ffffff;
+    background-color: #42A5F5;
+    border: 1px solid #42A5F5;
     border-radius: 4px;
-    border: 0;
     font-size: 15px;
-    color: #fff;
     font-weight: 700;
+}
 
+.start-btn-div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.clear-session-btn{
+    width: 49%;
+}
+
+.download-btn{
+    width: 100%;
+}
+
+.scanner-com-buttons:disabled{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+}
+
+.data-div{
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+.warning-text{
+    font-size: 14px;
+    color: red;
+}
+
+.mr-15{
+    margin-right: 15px;
 }

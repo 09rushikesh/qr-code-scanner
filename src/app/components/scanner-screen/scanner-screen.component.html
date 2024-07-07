@@ -3,22 +3,50 @@
     <div class="page-title">
         Scan products
     </div>
-    
+
     <div class="scanner-component">
         <ngx-scanner-qrcode #action="scanner" [config]="config" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
     </div>
     
     
     <div class="button-div">
-        <button class="scanner-com-buttons" (click)="handle(action, action.isStart ? 'stop' : 'start')">
-            {{action.isStart ? 'Stop' :"Start" }}
-        </button>
+        
+        <div *ngIf="action.isStart" class="warning-text">
+            <span>
+                Scanning is in Progress, to download list of scanned products please stop the session.
+            </span>
+        </div>
 
-        <button class="scanner-com-buttons">
-            download
-        </button>
+        <div class="start-btn-div">
+            <button class="scanner-com-buttons mr-15 clear-session-btn" (click)="handle(action, action.isStart ? 'stop' : 'start')">
+                {{action.isStart ? 'Stop session' :"Start session" }}
+            </button>
+    
+            <button [disabled]="action.isStart || !scanElementArr.length" (click)="clearSession()" class="scanner-com-buttons clear-session-btn" >
+                Clear current session
+            </button>
+        </div>
+        
+        <div>
+            <button [disabled]="action.isStart || !scanElementArr.length" (click)="onDownloadClick()" class="scanner-com-buttons download-btn">
+                download
+            </button>
+        </div>
+        
 
 
+    </div>
+
+    <div class="scanned-page-title" *ngIf="scanElementArr.length">
+        <div>
+            Scanned items
+        </div>
+    </div>
+
+    <div class="data-div">
+        <div *ngFor="let item of scanElementArr?.slice()?.reverse();let in=index">
+            {{item}}
+        </div>
     </div>
     
 </div>

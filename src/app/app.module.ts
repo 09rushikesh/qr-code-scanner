@@ -16,6 +16,7 @@ LOAD_WASM().subscribe()
     BrowserModule,
     AppRoutingModule,
     NgxScannerQrcodeModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

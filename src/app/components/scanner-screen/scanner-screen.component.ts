@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ScannerQRCodeConfig, ScannerQRCodeResult } from 'ngx-scanner-qrcode';
+import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-scanner-screen',
   templateUrl: './scanner-screen.component.html',
@@ -26,7 +27,7 @@ export class ScannerScreenComponent implements OnInit {
     if(!this.scanElementArr.includes(e[0].value)){
       this.scanElementArr.push(e[0].value);
     }
-    console.log(this.scanElementArr);
+    // console.log(this.scanElementArr);
 
   }
 
@@ -44,6 +45,56 @@ export class ScannerScreenComponent implements OnInit {
     }
   }
 
+  clearSession(){
+    this.scanElementArr = [];
+  }
+
+  onDownloadClick() {
+    const jsonData = this.convertArrayToJson(this.scanElementArr);
+
+    const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    const EXCEL_EXTENSION = '.xlsx';
+
+    //create worksheet
+    const worksheet = XLSX.utils.json_to_sheet(jsonData);
+    const workbooks = {
+      Sheets: {
+        'testingSheets': worksheet
+      },
+      SheetNames: ['testingSheets']
+    }
+    const exelBuffer = XLSX.write(workbooks, { bookType: 'xlsx', type: 'array' });
+
+    const blobData = new Blob([exelBuffer], { type: EXCEL_TYPE });
+    
+    //download logic
+    let d = new Date();
+    let formattedDate = d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear() + " " +
+    d.getHours() + ":" + d.getMinutes();
+    const fileName = 'Preetam_products_' + formattedDate 
+    const link = document.createElement('a');
+    link.setAttribute('href', URL.createObjectURL(blobData));
+    link.setAttribute('download', fileName);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+
+  }
+
+  convertArrayToJson(arr:any){
+    let JsonData:any = [];
+    arr.forEach((ele:any) => {
+      let obj = {
+        sku:ele
+      }
+      JsonData.push(obj);
+    });
+
+    return JsonData;
+
+  }
 
 
 }

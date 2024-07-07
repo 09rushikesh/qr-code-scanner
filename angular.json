@@ -39,7 +39,10 @@
               "src/styles.scss"
             ],
             "scripts": [
-            ]
+            ],
+            "allowedCommonJsDependencies": [
+              "file-saver"
+           ]
           },
           "configurations": {
             "production": {
