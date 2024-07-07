@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/qr-scanner'),
+      dir: require('path').join(__dirname, './coverage/qr-scanner-rushi'),
       subdir: '.',
       reporters: [
         { type: 'html' },
