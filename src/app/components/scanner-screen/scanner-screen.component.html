@@ -8,7 +8,7 @@
         <ngx-scanner-qrcode #action="scanner" [config]="config" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
         <div class="flash-btn">
             <img *ngIf="!action.isTorch" src="assets/img/flash.png" alt="" height="30" width="30" (click)="action.isTorch = !action.isTorch;handle(action, 'torcher')">
-            <img *ngIf="action.isTorch" src="assets/img/flash.png" alt="" height="30" width="30" (click)="action.isTorch = !action.isTorch;handle(action, 'torcher')">
+            <img *ngIf="action.isTorch" src="assets/img/no-flash.png" alt="" height="30" width="30" (click)="action.isTorch = !action.isTorch;handle(action, 'torcher')">
         </div>
     </div>
 
