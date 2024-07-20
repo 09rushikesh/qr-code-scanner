@@ -6,7 +6,13 @@
 
     <div class="scanner-component">
         <ngx-scanner-qrcode #action="scanner" [config]="config" (event)="onEvent($event, action)"></ngx-scanner-qrcode>
+        <div class="flash-btn">
+            <img *ngIf="!action.isTorch" src="assets/img/flash.png" alt="" height="30" width="30" (click)="handle(action, 'torcher')">
+            <img *ngIf="action.isTorch" src="assets/img/flash.png" alt="" height="30" width="30" (click)="handle(action, 'torcher')">
+        </div>
     </div>
+
+    
     
     
     <div class="button-div">

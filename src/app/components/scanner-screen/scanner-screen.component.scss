@@ -1,4 +1,5 @@
 .scanner-component{
+    position: relative;
     width: 100%;
 }
 
@@ -71,4 +72,17 @@
 
 .mr-15{
     margin-right: 15px;
+}
+
+.flash-btn{
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    right: 10px;
+    bottom: 15px;
+    border: 2px solid gray;
+    border-radius: 50%;
+    padding: 10px;
+    background: #fff;
+    opacity: .3;
 }
